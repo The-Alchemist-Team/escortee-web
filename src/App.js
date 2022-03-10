@@ -8,10 +8,11 @@ import Layout from "./screens/Layout";
 import Login from "./screens/Login";
 import NewPlaceForm from "./screens/NewPlaceForm";
 import Register from "./screens/Register";
+import Verify from "./screens/Verify";
 
 function App() {
   const user = useAuthContext();
-  console.log(user);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -22,6 +23,7 @@ function App() {
           <Route element={<RequireAuth />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/add-place" element={<NewPlaceForm />} />
+            <Route path="/dashboard/verify" element={<Verify />} />
           </Route>
         </Route>
       </Routes>
