@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { googleLogin, registerUser } from "../context/Auth/actions";
 import { useAuthDispatchContext } from "../context/Auth/AuthContext";
 
@@ -66,6 +66,7 @@ const Register = () => {
       <button className="p-9" onClick={googleLoginHandler}>
         SignInWithGoogle
       </button>
+      <Link to="/login">Already have a account</Link>
     </div>
   );
 };
