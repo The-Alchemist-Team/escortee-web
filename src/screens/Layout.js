@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 const Layout = () => {
   return (
     <>
-      <nav>HIda</nav>
+      <nav>Escortee Web</nav>
       <Outlet />
     </>
   );

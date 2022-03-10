@@ -9,6 +9,7 @@ import Login from "./screens/Login";
 import NewPlaceForm from "./screens/NewPlaceForm";
 import Register from "./screens/Register";
 import Verify from "./screens/Verify";
+import AddFeatures from "./screens/AddFeatures";
 
 function App() {
   const user = useAuthContext();
@@ -24,6 +25,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/dashboard/add-place" element={<NewPlaceForm />} />
             <Route path="/dashboard/verify" element={<Verify />} />
+            <Route path="/dashboard/add-feature" element={<AddFeatures />} />
           </Route>
         </Route>
       </Routes>

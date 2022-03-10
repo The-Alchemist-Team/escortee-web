@@ -27,7 +27,19 @@ const Dashboard = ({ history }) => {
               <h1>{doc.name}</h1>
               <p>{doc.address}</p>
               <p>{doc.description}</p>
-              <button>Add Features</button>
+              <button
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate(`${location.pathname}/add-feature`, {
+                    state: {
+                      from: location.pathname,
+                      docid: docid.id,
+                    },
+                  });
+                }}
+              >
+                Add Features
+              </button>
               {!doc.isVerified ? (
                 <button
                   onClick={(e) => {
