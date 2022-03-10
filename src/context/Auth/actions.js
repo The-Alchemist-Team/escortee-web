@@ -4,7 +4,8 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { auth } from "../../config/firebase";
+import { addDoc, collection } from "firebase/firestore";
+import { auth, db } from "../../config/firebase";
 import { AUTH_FAILURE, AUTH_REQUEST, AUTH_SUCCESS } from "./constants";
 
 export const loginUser = (dispatch, payload) => {
@@ -28,7 +29,12 @@ export const registerUser = (dispatch, payload) => {
     dispatch({ type: AUTH_REQUEST });
     const { email, password, name } = payload;
     createUserWithEmailAndPassword(auth, email, password)
-      .then((user) => {
+      .then(async (user) => {
+        const userRef = await addDoc(collection(db, "users"), {
+          name,
+          uid: user.user.uid,
+        });
+
         dispatch({ type: AUTH_SUCCESS, payload: user });
         resolve(user);
       })

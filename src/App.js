@@ -6,6 +6,7 @@ import Dashboard from "./screens/Dashboard";
 import Home from "./screens/Home";
 import Layout from "./screens/Layout";
 import Login from "./screens/Login";
+import NewPlaceForm from "./screens/NewPlaceForm";
 import Register from "./screens/Register";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route element={<RequireAuth />}>
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/add-place" element={<NewPlaceForm />} />
           </Route>
         </Route>
       </Routes>
