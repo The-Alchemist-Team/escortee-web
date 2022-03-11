@@ -6,7 +6,6 @@ const Home = () => {
   return (
     <div>
       <p>Home</p>
-      <Link to="/dashboard">dashboard</Link>
     </div>
   );
 };
