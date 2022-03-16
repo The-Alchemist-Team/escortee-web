@@ -30,7 +30,7 @@ export const registerUser = (dispatch, payload) => {
     const { email, password, name } = payload;
     createUserWithEmailAndPassword(auth, email, password)
       .then(async (user) => {
-        const userRef = await addDoc(collection(db, "users"), {
+        await addDoc(collection(db, "users"), {
           name,
           uid: user.user.uid,
         });
@@ -51,13 +51,21 @@ export const googleLogin = (dispatch) => {
     const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
-      .then((result) => {
+      .then(async (result) => {
         dispatch({ type: AUTH_REQUEST });
-        const credential = GoogleAuthProvider.credentialFromResult(result);
+        GoogleAuthProvider.credentialFromResult(result);
         // const token = credential.accessToken;
         const user = result.user;
         dispatch({ type: AUTH_SUCCESS, payload: user });
         resolve(user);
+        user &&
+          (await addDoc(collection(db, "users"), {
+            name: user.displayName,
+            uid: user.uid,
+          }));
+      })
+      .then((user) => {
+        console.log(user);
       })
       .catch((error) => {
         dispatch({ type: AUTH_FAILURE, payload: error });

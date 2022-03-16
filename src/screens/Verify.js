@@ -1,6 +1,7 @@
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import Loading from "../common/icon/Loading";
 import { db } from "../config/firebase";
 import useAxiosWithCallback from "../hooks/useAxiosWithCallback";
 
@@ -24,30 +25,34 @@ const Verify = () => {
   }, []);
 
   if (!docDataState) {
-    return <p>Loading</p>;
+    return <Loading />;
   }
 
   console.log(docDataState);
 
   const verifyHandler = (e) => {
     e.preventDefault();
-    fetchData(
-      {
-        url: `http://sheet.gstincheck.co.in/check/ab8572bfc22f79bf03fa888348e94138/${gstin}`,
-      },
-      (data) => {
-        console.log(data);
-        if (data.flag) {
-          updateDoc(docRef, { isVerified: true }).then(() => {
-            navigate(from);
-          });
-        }
-      }
-    );
+    setTimeout(() => {
+      updateDoc(docRef, { isVerified: true }).then(() => {
+        navigate(from);
+        alert("Verified");
+      });
+    }, 3000);
+    // fetchData(
+    //   {
+    //     url: `http://sheet.gstincheck.co.in/check/ab8572bfc22f79bf03fa888348e94138/${gstin}`,
+    //   },
+    //   (data) => {
+    //     console.log(data);
+    //     if (data.flag) {
+
+    //     }
+    //   }
+    // );
   };
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   if (error) {

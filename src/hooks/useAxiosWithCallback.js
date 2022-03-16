@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import axios from "axios";
 
 export default function useAxiosWithCallback() {
@@ -9,6 +9,7 @@ export default function useAxiosWithCallback() {
     const axiosConfig = {
       method: "get",
       headers: {
+        "Access-Control-Allow-Origin": "*",
         "Content-Type": "application/json",
         ...config.headers,
       },

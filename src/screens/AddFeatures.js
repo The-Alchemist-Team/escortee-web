@@ -10,29 +10,26 @@ const AddFeatures = () => {
   const [features, setFeatures] = useState([]);
   const [selected, setSelected] = useState();
   const [coord, setCoord] = useState("");
-
+  const [floor, setFloor] = useState("");
   const { docid, from } = location.state;
 
   const features_list = [
     "Wheelchair",
     "Braille",
-    "Tactiles",
+
     "Washroom",
-    "Gluten Free Food",
+
     "Lifts",
-    "Step Free",
-    "Autism",
+
     "Parking",
-    "Search",
+
     "Sign Language",
-    "Special Needs",
+
     "Assistance",
     "Sign Board",
-    "Eating Aids",
+
     "Elevator",
-    "Large Print",
-    "Intellectual",
-    "Disability",
+
     "Wheelchair Ramp",
   ];
 
@@ -105,6 +102,16 @@ const AddFeatures = () => {
               setCoord(e.target.value);
             }}
           />
+          <input
+            type="number"
+            placeholder="Floor"
+            className="border-2 border-primary bg-red transition h-12 px-5 pr-16 rounded-md focus:outline-none w-full text-black text-lg "
+            value={floor}
+            onChange={(e) => {
+              setFloor(e.target.value);
+            }}
+          />
+
           <button
             className="bg-yellow-400 px-7 py-5 rounded-lg shadow-lg  text-white"
             type="submit"

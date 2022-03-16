@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import RequireAuth from "./components/Auth/RequireAuth";
-import { useAuthContext } from "./context/Auth/AuthContext";
+
 import Dashboard from "./screens/Dashboard";
 import Home from "./screens/Home";
 import Layout from "./screens/Layout";
@@ -12,8 +12,6 @@ import Verify from "./screens/Verify";
 import AddFeatures from "./screens/AddFeatures";
 
 function App() {
-  const user = useAuthContext();
-
   return (
     <BrowserRouter>
       <Routes>

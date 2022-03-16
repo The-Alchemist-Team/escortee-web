@@ -1,5 +1,7 @@
 import React from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import Arrow from "../common/icon/Arrow";
+import Loading from "../common/icon/Loading";
 import { useAuthContext } from "../context/Auth/AuthContext";
 import { useFetchUserPlaces } from "../hooks/useFetchUserPlaces";
 
@@ -9,12 +11,24 @@ const Dashboard = ({ history }) => {
   const { user } = useAuthContext();
   const { docs, isLoading, error } = useFetchUserPlaces("places", user.uid);
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <Loading />;
   }
 
   return (
     <div className="flex justify-center items-center flex-col w-screen mt-10">
       <div className="grid grid-cols-3 gap-4">
+        {docs.length === 0 && (
+          <div className="relative bottom-10 flex flex-col h-screen w-full justify-center col-span-3 items-center">
+            <p className="relative bottom-24 font-bold text-5xl w-3/4">
+              You have not added any places yet. Please{" "}
+              <span className="text-yellow-400">Add a new place</span>{" "}
+            </p>
+
+            <div className="rotate-180 scale-50 absolute bottom-32 right-0">
+              <Arrow />
+            </div>
+          </div>
+        )}
         {docs.map(({ docid, doc }) => {
           return (
             <div
